@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Bem-vindo ao seu espaço de 
+                <span class="highlight">cuidado e transformação</span>
+            </h1>
+            <p class="hero-subtitle">
+                Um ambiente seguro e acolhedor para você trabalhar suas questões emocionais 
+                e descobrir seu potencial de crescimento pessoal.
+            </p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('schedule') }}" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt"></i>
+                    Agendar Sessão
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-user"></i>
+                    Conheça-me
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/placeholder.svg?height=500&width=600" alt="Consultório acolhedor">
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="/placeholder.svg?height=400&width=350" alt="Dra. Ana - Psicóloga">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">Sobre Mim</h2>
+                <h3 class="about-subtitle">Dra. Ana Silva</h3>
+                <p class="about-description">
+                    Sou psicóloga clínica formada pela USP, com mais de 10 anos de experiência 
+                    no atendimento de adultos, casais e famílias. Minha abordagem integra 
+                    diferentes correntes terapêuticas, sempre priorizando o acolhimento e 
+                    o respeito à singularidade de cada pessoa.
+                </p>
+                
+                <div class="mission-values">
+                    <div class="mission">
+                        <h4><i class="fas fa-heart"></i> Missão</h4>
+                        <p>Proporcionar um espaço seguro e acolhedor para o desenvolvimento 
+                        do autoconhecimento e bem-estar emocional.</p>
+                    </div>
+                    <div class="values">
+                        <h4><i class="fas fa-star"></i> Valores</h4>
+                        <ul>
+                            <li>Ética e confidencialidade</li>
+                            <li>Respeito à diversidade</li>
+                            <li>Acolhimento humanizado</li>
+                            <li>Compromisso com resultados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="credentials">
+                    <h4>Formação e Especializações</h4>
+                    <ul>
+                        <li>Graduação em Psicologia - USP</li>
+                        <li>Especialização em Terapia Cognitivo-Comportamental</li>
+                        <li>Formação em Terapia de Casal e Família</li>
+                        <li>CRP: 06/123456</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services">
+    <div class="container">
+        <h2 class="section-title">Serviços Oferecidos</h2>
+        <p class="section-subtitle">Atendimento personalizado para suas necessidades</p>
+        
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-icon">
+                    {% if service.title == "Terapia Individual" %}
+                        <i class="fas fa-user"></i>
+                    {% elif service.title == "Terapia de Casal" %}
+                        <i class="fas fa-heart"></i>
+                    {% elif service.title == "Terapia Familiar" %}
+                        <i class="fas fa-users"></i>
+                    {% else %}
+                        <i class="fas fa-compass"></i>
+                    {% endif %}
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <div class="service-details">
+                    <span class="duration"><i class="fas fa-clock"></i> {{ service.duration }}</span>
+                    <span class="price">{{ service.price }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Depoimentos</h2>
+        <p class="section-subtitle">O que meus pacientes dizem</p>
+        
+        <div class="testimonials-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="stars">
+                        {% for i in range(testimonial.rating) %}
+                        <i class="fas fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    <p>"{{ testimonial.text }}"</p>
+                    <div class="testimonial-author">
+                        <strong>{{ testimonial.name }}</strong>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p class="section-subtitle">Estou aqui para ajudar você</p>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Informações de Contato</h3>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Telefone</strong>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p>contato@anaterapia.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Localização</strong>
+                        <p>São Paulo, SP<br>Atendimento presencial e online</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <a href="{{ url_for('schedule') }}" class="whatsapp-link">
+                            Agendar pelo WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form" id="contact-form">
+                <h3>Envie uma Mensagem</h3>
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Seu email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="Seu telefone">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Sua mensagem" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar Mensagem
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
